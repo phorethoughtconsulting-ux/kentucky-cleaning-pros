@@ -168,6 +168,11 @@
   #poc h3{font-family:var(--serif);font-size:24px;font-weight:600}
   #poc p{color:var(--muted);font-size:14.5px;line-height:1.6;margin-top:10px}
   #poc button{margin-top:20px;cursor:pointer;background:var(--green);color:#fff;border:none;font-weight:600;font-size:14px;letter-spacing:1px;padding:13px 26px;border-radius:10px}
+  #poc .p-card b{color:var(--ink);font-weight:600}
+  #poc .need{list-style:none;text-align:left;margin:16px auto 2px;max-width:340px;display:flex;flex-direction:column;gap:10px}
+  #poc .need li{position:relative;padding-left:28px;font-size:13.5px;color:#3f4b45;line-height:1.4}
+  #poc .need li::before{content:'';position:absolute;left:0;top:1px;width:16px;height:16px;border-radius:5px;border:2px solid var(--green);background:#fff}
+  #poc .pnote{font-size:12.5px;color:var(--muted);margin-top:15px;line-height:1.55}
   #poc.hide{display:none}
 
   @media (max-width:860px){
@@ -338,9 +343,17 @@
 <!-- concept preview overlay (owner handoff — dismiss persists per session) -->
 <div id="poc" role="dialog" aria-label="Concept preview notice">
   <div class="p-card">
-    <h3>Concept preview</h3>
-    <p>This is a working preview of the Kentucky Cleaning Pros site. Phone, email, and the quote form are placeholders until launch — everything else is real. Click through the house.</p>
-    <button id="pocBtn" type="button">Enter the house →</button>
+    <h3>Your site — private preview</h3>
+    <p>Vincent — this is your real site on your real domain. It's <b>built and ready to go live.</b> To flip it on, we just need a few real details from you:</p>
+    <ul class="need">
+      <li>Your business <b>phone number</b></li>
+      <li>The <b>email</b> where quote requests should land</li>
+      <li>A <b>real photo of you</b> for the “About” section</li>
+      <li>Confirm you're <b>veteran-owned</b> &amp; <b>fully insured</b> (both are on the site)</li>
+      <li>Are you <b>hiring</b>? If so, where should applications go?</li>
+    </ul>
+    <p class="pnote">Send those over and it's live within the day. Until then it stays private — search engines can't find it. Have a walk through your house.</p>
+    <button id="pocBtn" type="button">Walk through my site →</button>
   </div>
 </div>
 
