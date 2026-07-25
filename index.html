@@ -11,18 +11,19 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kentucky Cleaning Pros — Clean spaces, better places.">
 <meta property="og:description" content="Walk through a home as we bring it back to life — then book yours. Residential cleaning, Louisville. Veteran-owned, fully insured.">
-<meta property="og:image" content="https://phorethoughtconsulting-ux.github.io/phorethought-site/clients/kentucky-cleaning-pros/img/og.jpg">
-<meta property="og:url" content="https://phorethoughtconsulting-ux.github.io/phorethought-site/clients/kentucky-cleaning-pros/">
+<meta property="og:image" content="https://kentuckycleaningpros.com/img/og.jpg">
+<meta property="og:url" content="https://kentuckycleaningpros.com/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kentucky Cleaning Pros — Clean spaces, better places.">
 <meta name="twitter:description" content="Walk through a home as we bring it back to life — then book yours. Louisville, KY.">
-<meta name="twitter:image" content="https://phorethoughtconsulting-ux.github.io/phorethought-site/clients/kentucky-cleaning-pros/img/og.jpg">
+<meta name="twitter:image" content="https://kentuckycleaningpros.com/img/og.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{--bg:#F7F9F7;--surface:#FFFFFF;--ink:#1E2A25;--muted:#5C6B64;--green:#2F7D5B;--gold:#E8B563;
         --serif:'Fraunces',Georgia,serif;--sans:'Figtree',system-ui,sans-serif}
   html{scroll-behavior:smooth}
+  html,body{overflow-x:hidden}   /* nothing may push the page wider than the screen */
   body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
   body.walking{overflow:hidden}
 
@@ -39,8 +40,6 @@
   header button.skip:hover{border-color:var(--gold);color:var(--gold)}
   header.solid{background:rgba(247,249,247,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(30,42,37,.08)}
   header.solid .wm,header.solid a.tel{color:var(--ink);text-shadow:none}
-  header.solid #skipBtn{display:none}
-  header.solid #sndBtn{background:transparent;border-color:rgba(30,42,37,.25);color:var(--ink)}  /* the sound control never disappears */
   /* section nav — hidden during the immersive walk, revealed on the booking page */
   header .hnav{display:none;align-items:center;gap:22px}
   header .hnav a{color:#fff;text-decoration:none;font-weight:600;font-size:14px;text-shadow:0 1px 12px rgba(0,0,0,.5);transition:color .25s}
@@ -82,6 +81,66 @@
   #walk.end #bookCta{opacity:1;visibility:visible;transform:translateX(-50%)}
   #bookCta:hover{background:#256648}
   #bookCta:focus-visible,header button.skip:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  /* walk is an overlay now — hide the header while it's open so its own controls lead */
+  body.walking header{opacity:0;pointer-events:none}
+  /* non-trapping exit from the optional walk */
+  #walkClose{position:absolute;top:64px;right:clamp(18px,4vw,38px);z-index:8;cursor:pointer;
+    background:rgba(20,28,24,.4);border:1px solid rgba(255,255,255,.4);color:#fff;font-family:var(--sans);
+    font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;padding:11px 18px;min-height:44px;
+    border-radius:30px;backdrop-filter:blur(6px);transition:border-color .25s,color .25s}
+  #walkClose:hover{border-color:var(--gold);color:var(--gold)}
+  #walkClose:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+  /* ───────────── HOME HERO (clean, strong — the first thing visitors meet) ───────────── */
+  .hero{padding:calc(84px + clamp(28px,6vh,66px)) clamp(20px,5vw,48px) clamp(48px,7vw,88px);
+    background:linear-gradient(180deg,#EFF5F0,var(--bg))}
+  .hero-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,58px);align-items:center}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(40px,6vw,68px);line-height:1.03;letter-spacing:-1px;margin-top:16px}
+  .hero-sub{color:var(--muted);font-size:clamp(15.5px,1.8vw,18px);line-height:1.62;margin-top:18px;max-width:520px}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+  .btn-primary{display:inline-flex;align-items:center;background:var(--green);color:#fff;text-decoration:none;
+    font-weight:600;font-size:15px;letter-spacing:.6px;padding:16px 30px;border-radius:12px;transition:transform .2s,background .25s}
+  .btn-primary:hover{transform:translateY(-2px);background:#256648}
+  .btn-ghost{display:inline-flex;align-items:center;color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;
+    letter-spacing:.3px;padding:16px 26px;border-radius:12px;border:1.5px solid rgba(30,42,37,.2);transition:border-color .2s,color .2s}
+  .btn-ghost:hover{border-color:var(--green);color:var(--green)}
+  .hero-media img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:20px;box-shadow:0 30px 70px rgba(30,42,37,.18)}
+  header .hbook{background:var(--green);color:#fff;text-decoration:none;font-weight:600;font-size:13px;
+    letter-spacing:.5px;padding:11px 18px;border-radius:30px;transition:background .25s,transform .2s;white-space:nowrap}
+  header .hbook:hover{background:#256648;transform:translateY(-1px)}
+  section[id]{scroll-margin-top:82px}
+  .hero .eyebrow{flex-wrap:wrap}
+  @media (max-width:860px){ .hero-inner{grid-template-columns:1fr} }
+  @media (max-width:520px){ .hero .eyebrow{letter-spacing:1.6px;font-size:11px} .hero-cta{gap:12px} .hero-cta .btn-primary,.hero-cta .btn-ghost{flex:1 1 auto;justify-content:center} }
+
+  /* ───────────── HOW IT WORKS ───────────── */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,30px);margin-top:42px}
+  .step{background:var(--surface);border:1px solid rgba(47,125,91,.16);border-radius:16px;padding:28px 26px;box-shadow:0 10px 30px rgba(30,42,37,.05)}
+  .step-n{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;
+    background:var(--green);color:#fff;font-family:var(--serif);font-weight:600;font-size:20px;box-shadow:0 8px 20px rgba(47,125,91,.3)}
+  .step h3{font-family:var(--serif);font-weight:600;font-size:20px;margin-top:16px}
+  .step p{color:var(--muted);font-size:14.5px;line-height:1.55;margin-top:8px}
+
+  /* ───────────── WHAT'S INCLUDED ───────────── */
+  .included{margin-top:40px;background:var(--surface);border:1px solid rgba(47,125,91,.16);border-radius:18px;padding:clamp(24px,3vw,36px);box-shadow:0 14px 40px rgba(30,42,37,.06)}
+  .included h3{font-family:var(--serif);font-weight:600;font-size:clamp(21px,2.6vw,28px)}
+  .included .lead{margin-top:8px}
+  .inc-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:13px 30px;margin-top:22px}
+  .inc-list li{position:relative;padding-left:32px;font-size:14.5px;color:#3f4b45;line-height:1.45}
+  .inc-list li::before{content:'';position:absolute;left:0;top:0;width:20px;height:20px;border-radius:6px;background:rgba(47,125,91,.1);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232F7D5B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+    background-size:13px;background-position:center;background-repeat:no-repeat}
+
+  /* ───────────── FAQ ───────────── */
+  .faq{margin-top:40px;max-width:800px}
+  .faq details{border-bottom:1px solid rgba(30,42,37,.12)}
+  .faq summary{cursor:pointer;list-style:none;padding:22px 44px 22px 0;position:relative;font-family:var(--serif);font-weight:600;font-size:clamp(17px,2vw,20px);color:var(--ink)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';position:absolute;right:4px;top:50%;transform:translateY(-50%);font-weight:400;font-size:27px;color:var(--green);transition:.25s}
+  .faq details[open] summary::after{content:'–'}
+  .faq summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+  .faq details p{color:var(--muted);font-size:15px;line-height:1.62;padding:0 44px 24px 0;margin-top:-4px}
+  @media (max-width:860px){ .steps{grid-template-columns:1fr} .inc-list{grid-template-columns:1fr} }
 
   /* ───────────── BOOKING PAGE ───────────── */
   main{position:relative;z-index:1}
@@ -119,8 +178,9 @@
 
   /* services */
   .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
-  .svc{background:var(--surface);border:1px solid rgba(47,125,91,.16);border-radius:16px;overflow:hidden;
+  .svc{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid rgba(47,125,91,.16);border-radius:16px;overflow:hidden;
        transition:transform .3s ease,box-shadow .3s ease}
+  .svc:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
   .svc:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(30,42,37,.12)}
   .svc img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
   .svc .sv-b{padding:18px 20px 22px}
@@ -225,25 +285,25 @@
   .vin-next b{color:var(--ink);font-weight:600}
 </style>
 </head>
-<body class="walking">
+<body>
 
-<header id="hdr">
-  <a class="wm" href="#" aria-label="Kentucky Cleaning Pros home">Kentucky Cleaning Pros</a>
+<header id="hdr" class="solid">
+  <a class="wm" href="#top" aria-label="Kentucky Cleaning Pros home">Kentucky Cleaning Pros</a>
   <div class="h-right">
     <nav class="hnav" aria-label="Site sections">
       <a href="#services">Services</a>
       <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
       <a href="#book">Book</a>
     </nav>
     <a class="tel" href="tel:+15025550100">(502) 555-0100</a><!-- [PLACEHOLDER phone — replace at launch] -->
-    <button class="skip" id="sndBtn" type="button" aria-label="Toggle sound" style="padding:9px 12px">🔊</button>
-    <button class="skip" id="skipBtn" type="button">Book now →</button>
+    <a class="hbook" href="#book">Book now →</a>
   </div>
 </header>
 <div id="wprog" aria-hidden="true" style="position:fixed;top:0;left:0;height:3px;width:0;background:var(--green);z-index:70;transition:width .6s ease"></div>
 
-<!-- ═══════════ THE WALKTHROUGH ═══════════ -->
-<div id="walk" role="region" aria-label="Interactive home walkthrough — click or press space to step forward">
+<!-- ═══════════ THE WALKTHROUGH (optional — opens only when a visitor asks for it) ═══════════ -->
+<div id="walk" class="gone" role="region" aria-label="Interactive home walkthrough — click or press space to step forward">
   <!-- living scenes: real camera motion per room; poster = instant paint, video lazy-loads. Reduced-motion / no-GSAP → posters only (stills experience). -->
   <div class="scene" data-ox="46%" data-oy="66%" role="img" aria-label="A two-story home at golden dusk, windows glowing"><video src="vid/S1-exterior-dusk.mp4" poster="img/S1-exterior-dusk.jpg" muted playsinline preload="none"></video></div>
   <div class="scene" data-ox="50%" data-oy="48%" role="img" aria-label="The black front door between porch lanterns"><video src="vid/S2-front-door.mp4" poster="img/S2-front-door.jpg" muted playsinline preload="none"></video></div>
@@ -263,12 +323,41 @@
   <div class="cap" id="cap"><div class="k" id="capK"></div><div class="t" id="capT"></div><div class="s" id="capS"></div></div>
   <button id="bookCta" type="button">Book now</button>
   <button id="backBtn" type="button" aria-label="Go back one room">← Back</button>
+  <button id="walkClose" type="button" aria-label="Close walkthrough">Close ✕</button>
   <div class="hint" id="hint">Scroll to walk through</div>
 </div>
-<audio id="amb" src="audio/ambient.mp3" loop preload="none"></audio>
 
-<!-- ═══════════ THE BOOKING PAGE ═══════════ -->
+<!-- ═══════════ THE HOME PAGE ═══════════ -->
 <main>
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div>
+        <span class="eyebrow">Residential cleaning · Louisville, KY</span>
+        <h1>Clean spaces,<br>better places.</h1>
+        <p class="hero-sub">Veteran-owned, fully insured home cleaning across the Louisville area. Honest quotes, a vetted crew, and work that's done when it's actually done.</p>
+        <div class="hero-cta">
+          <a class="btn-primary" href="#book">Get my quote →</a>
+          <a class="btn-ghost" href="tel:+15025550100">Call (502) 555-0100</a><!-- [PLACEHOLDER phone] -->
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="img/S7-foyer-gleaming.jpg" alt="A spotless, sunlit foyer after a Kentucky Cleaning Pros clean." loading="eager">
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="how">
+    <div class="inner">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps to a spotless home.</h2>
+      <div class="steps" data-reveal-group>
+        <div class="step"><span class="step-n">1</span><h3>Book in 60 seconds</h3><p>Tell us about your home and pick a day — online or by phone. We come back fast with a quote.</p></div>
+        <div class="step"><span class="step-n">2</span><h3>We clean it right</h3><p>A vetted crew arrives ready and cleans room by room, to a veteran's standard.</p></div>
+        <div class="step"><span class="step-n">3</span><h3>You relax</h3><p>Come home to clean. Done means done — every surface, every time.</p></div>
+      </div>
+    </div>
+  </section>
+
   <section class="band" id="book">
     <div class="inner">
       <span class="eyebrow">Book a cleaning</span>
@@ -286,8 +375,9 @@
           </div>
           <div class="frow">
             <div class="fld"><label for="f-svc">Service</label><select id="f-svc" name="service"><option>Standard clean</option><option>Deep clean</option><option>Move-in / Move-out</option></select></div>
-            <div class="fld"><label for="f-day">Preferred day</label><input id="f-day" name="preferred_day" type="text" placeholder="e.g. next Friday"></div>
+            <div class="fld"><label for="f-freq">How often?</label><select id="f-freq" name="frequency"><option>One-time</option><option>Weekly</option><option>Every 2 weeks</option><option>Monthly</option></select></div>
           </div>
+          <div class="fld"><label for="f-day">Preferred day</label><input id="f-day" name="preferred_day" type="text" placeholder="e.g. next Friday"></div>
           <div class="fld"><label for="f-notes">Anything we should know?</label><textarea id="f-notes" name="notes" placeholder="Pets, priorities, parking — anything helps."></textarea></div>
           <button class="submit" type="submit">Request my quote</button>
           <p class="form-note">No spam, no pressure — just a quote.</p>
@@ -299,7 +389,7 @@
           <p>Veteran-owned and fully insured. Serving the Louisville area — homes, apartments, and everything in between.</p>
         </div>
       </div>
-      <p style="margin-top:26px;text-align:center;font-size:13.5px;color:var(--muted)">↻ <a href="#" id="replayWalk" style="color:var(--green);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(47,125,91,.35)">Walk the house again</a></p>
+      <p style="margin-top:26px;text-align:center;font-size:13.5px;color:var(--muted)">Curious first? <a href="#" id="replayWalk" style="color:var(--green);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(47,125,91,.35)">Take a walk through a home →</a></p>
     </div>
   </section>
 
@@ -308,17 +398,47 @@
       <span class="eyebrow">What we do</span>
       <h2>Three ways to get your place back.</h2>
       <div class="svc-grid" data-reveal-group>
-        <div class="svc"><img src="img/S4-livingroom-midclean.jpg" alt="" loading="lazy">
-          <div class="sv-b"><h3>Standard clean</h3><p>The regular reset — floors, surfaces, kitchens, baths. The house you meant to keep, kept.</p><div class="sv-q">Quote in 60 seconds →</div></div></div>
-        <div class="svc"><img src="img/S5-kitchen-brighter.jpg" alt="" loading="lazy">
-          <div class="sv-b"><h3>Deep clean</h3><p>Every surface, every time — baseboards, appliances, the corners nobody sees. The full wake-up.</p><div class="sv-q">Quote in 60 seconds →</div></div></div>
-        <div class="svc"><img src="img/S6-bathroom-sparkling.jpg" alt="" loading="lazy">
-          <div class="sv-b"><h3>Move-in / Move-out</h3><p>Empty-home top to bottom — ready for keys, deposits, and fresh starts.</p><div class="sv-q">Quote in 60 seconds →</div></div></div>
+        <a class="svc" href="#book"><img src="img/S4-livingroom-midclean.jpg" alt="" loading="lazy">
+          <div class="sv-b"><h3>Standard clean</h3><p>The regular reset — floors, surfaces, kitchens, baths. The house you meant to keep, kept.</p><div class="sv-q">Quote in 60 seconds →</div></div></a>
+        <a class="svc" href="#book"><img src="img/S5-kitchen-brighter.jpg" alt="" loading="lazy">
+          <div class="sv-b"><h3>Deep clean</h3><p>Every surface, every time — baseboards, appliances, the corners nobody sees. The full wake-up.</p><div class="sv-q">Quote in 60 seconds →</div></div></a>
+        <a class="svc" href="#book"><img src="img/S6-bathroom-sparkling.jpg" alt="" loading="lazy">
+          <div class="sv-b"><h3>Move-in / Move-out</h3><p>Empty-home top to bottom — ready for keys, deposits, and fresh starts.</p><div class="sv-q">Quote in 60 seconds →</div></div></a>
       </div>
       <div class="trust" data-reveal-group>
         <span class="badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l2.4 5.3L20 8l-4 4 1 5.7L12 15l-5 2.7L8 12 4 8l5.6-.7L12 2z" fill="#2F7D5B"/></svg>Veteran-owned</span>
         <span class="badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6l8-4z" fill="#2F7D5B"/></svg>Fully insured</span>
         <span class="badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="10" r="3" fill="#2F7D5B"/><path d="M12 2a8 8 0 018 8c0 5.3-8 12-8 12S4 15.3 4 10a8 8 0 018-8z" stroke="#2F7D5B" stroke-width="2"/></svg>Louisville local</span>
+      </div>
+      <div class="included" data-reveal-group>
+        <h3>What every clean includes</h3>
+        <p class="lead">The standard reset, done to a veteran's standard. Deep cleans add the detail work; move-outs take it top to bottom.</p>
+        <ul class="inc-list">
+          <li>Kitchen — counters, sink, stovetop &amp; the outside of appliances</li>
+          <li>Bathrooms — toilets, tubs, showers, sinks &amp; mirrors</li>
+          <li>Floors — vacuumed and mopped throughout</li>
+          <li>Dusting — surfaces, sills &amp; reachable fixtures</li>
+          <li>Bedrooms &amp; living areas — tidied and reset</li>
+          <li>Trash — emptied and bagged</li>
+          <li>Baseboards &amp; detail work — on deep cleans</li>
+          <li>A final walk-through — so it's done when it's done</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="faq">
+    <div class="inner">
+      <span class="eyebrow">Good to know</span>
+      <h2>Questions, answered.</h2>
+      <div class="faq" data-reveal-group>
+        <details><summary>How do I get a quote?</summary><p>Fill out the 60-second form above or give us a call. Tell us a little about your home and we'll come back fast with a quote — no spam, no pressure.</p></details>
+        <details><summary>What's the difference between a standard, deep, and move-in / move-out clean?</summary><p>A standard clean is the regular reset — floors, surfaces, kitchen and baths. A deep clean adds the detail work: baseboards, appliances, and the corners a standard skips. Move-in / move-out is an empty-home clean, top to bottom, ready for keys or a deposit.</p></details>
+        <details><summary>Are you insured?</summary><p>Yes — Kentucky Cleaning Pros is veteran-owned and fully insured.</p></details>
+        <details><summary>Do I need to be home during the cleaning?</summary><p>It's entirely up to you. Many clients leave access instructions and come home to a finished house; others prefer to be there. Whatever's comfortable — just let us know when you book.</p></details>
+        <details><summary>Do you work around pets?</summary><p>Absolutely. Just mention your pets in the booking notes so the crew arrives prepared.</p></details>
+        <details><summary>What areas do you serve?</summary><p>Homes and apartments across Louisville and the surrounding neighborhoods. Not sure if we reach you? Ask — we probably do.</p></details>
+        <details><summary>What if I need to reschedule?</summary><p>Life happens. Just reach out and we'll find a new time that works for you.</p></details>
       </div>
     </div>
   </section>
@@ -358,6 +478,7 @@
     <nav class="f-nav" aria-label="Footer navigation">
       <a href="#services">Services</a>
       <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
       <a href="#book">Book a cleaning</a>
       <a href="#hiring">We're hiring</a>
       <a href="privacy.html">Privacy</a>
@@ -383,8 +504,8 @@
       <li>Confirm you're <b>veteran-owned</b> &amp; <b>fully insured</b> (both are on the site)</li>
       <li>Are you <b>hiring</b>? If so, where should applications go?</li>
     </ul>
-    <p class="pnote">Send those over and it's live within the day. Until then it stays private — search engines can't find it. Have a walk through your house.</p>
-    <button id="pocBtn" type="button">Walk through my site →</button>
+    <p class="pnote">Send those over and it's live within the day. Until then it stays private — search engines can't find it. Take a look around — the cinematic walkthrough is one tap away under the booking form.</p>
+    <button id="pocBtn" type="button">See my site →</button>
   </div>
 </div>
 
@@ -460,7 +581,7 @@
         null,
         ['THE SAME ROOM','Clean spaces, better places.','']
       ],
-      i=0, busy=false, finished=false;
+      i=0, busy=false, finished=true;   // walk starts CLOSED — the home page loads first; launchWalk() opens it on request
 
   // dots for real rooms only
   var realIdx=[]; scenes.forEach(function(s,k){ if(!s.dataset.bridge){ realIdx.push(k); var d=document.createElement('i'); dotsW.appendChild(d);} });
@@ -507,20 +628,7 @@
     walk.classList.toggle('canback', i>0 && !finished);   // the Back control appears once you've stepped inside
   }
 
-  /* ambient sound — starts on the first walk gesture (autoplay-safe), toggle persists */
-  var amb=document.getElementById('amb'), sndBtn=document.getElementById('sndBtn'), sndOn=true, ambStarted=false;
-  try{ if(sessionStorage.getItem('kcp-snd')==='off'){ sndOn=false; sndBtn.textContent='🔇'; } }catch(e){}
-  function startAmb(){
-    if(ambStarted||!sndOn) return; ambStarted=true;
-    try{ amb.volume=0; var p=amb.play();
-      if(p&&p.then) p.then(function(){ if(hasGsap) gsap.to(amb,{volume:0.22,duration:2.5}); else amb.volume=0.22; }).catch(function(){ ambStarted=false; });
-    }catch(e){ ambStarted=false; }
-  }
-  sndBtn.addEventListener('click',function(){
-    sndOn=!sndOn; sndBtn.textContent=sndOn?'🔊':'🔇';
-    try{ sessionStorage.setItem('kcp-snd',sndOn?'on':'off'); }catch(e){}
-    if(sndOn){ ambStarted=false; startAmb(); } else { try{ amb.pause(); }catch(e){} ambStarted=false; }
-  });
+  /* (ambient music removed by request — the walk plays silent so the tech never feels intrusive) */
 
   /* idle nudge — the hint breathes back after 8s of stillness in a room */
   var idleT=null;
@@ -648,31 +756,30 @@
       .to(bloom,{opacity:0,duration:0.55,ease:'power2.out'},inDur+0.12);
   }
 
-  /* ── leaving the house: the walkthrough releases upward into the booking page ── */
-  function finish(){
+  /* ── the optional walkthrough is a self-contained overlay: it closes back to the home page ── */
+  function closeWalk(toBook){
     if(finished) return; finished=true;
     clearTimeout(idleT);
-    document.body.classList.remove('walking');
-    var mainEl=document.querySelector('main'); if(mainEl) mainEl.removeAttribute('inert');
-    if(ambStarted&&hasGsap){ gsap.to(amb,{volume:0.10,duration:2}); }   // the bed settles to a whisper on the booking page — control stays in the header
-    hdr.classList.add('solid');
-    wprog.style.width='100%';
     if(drift) drift.kill();
     pauseScene(scenes[i]);
-    window.scrollTo(0,0);
-    if(reduce||!hasGsap){ walk.classList.add('gone'); return; }
-    gsap.to(walk,{yPercent:-100,duration:1.1,ease:'power3.inOut',onComplete:function(){ walk.classList.add('gone'); }});
+    wprog.style.width='0';
+    document.body.classList.remove('walking');
+    var land=function(){ walk.classList.add('gone'); walk.style.opacity=''; if(toBook){ var b=document.getElementById('book'); if(b) b.scrollIntoView({behavior:reduce?'auto':'smooth'}); } };
+    if(reduce||!hasGsap){ land(); return; }
+    gsap.to(walk,{opacity:0,duration:.5,ease:'power2.inOut',onComplete:land});
   }
+  function finish(){ closeWalk(true); }   // "Book now" at the end of the walk → close and drop them on the booking form
 
-  function walkFwd(){ startAmb(); calmIdle(); if(i===scenes.length-1&&!busy){ finish(); return; } step(); }  // at the gleaming foyer, one more scroll carries you into the site
-  walk.addEventListener('click',function(e){ if(e.target===bookCta||e.target===backBtn) return; walkFwd(); });
-  bookCta.addEventListener('click',function(){ startAmb(); finish(); });
-  document.getElementById('skipBtn').addEventListener('click',finish);
+  function walkFwd(){ calmIdle(); if(i===scenes.length-1&&!busy){ finish(); return; } step(); }  // at the gleaming foyer, one more step books
+  walk.addEventListener('click',function(e){ if(e.target===bookCta||e.target===backBtn||e.target===closeBtn) return; walkFwd(); });
+  bookCta.addEventListener('click',finish);
   addEventListener('keydown',function(e){
     if(finished) return;
+    if(e.key==='Escape'){ e.preventDefault(); closeWalk(false); return; }   // never trapped — Esc leaves the walk
     if(e.key==='ArrowLeft'){ e.preventDefault(); stepBack(); return; }
     if(e.key===' '||e.key==='Enter'||e.key==='ArrowRight'){
-      if(document.activeElement===bookCta||document.activeElement===document.getElementById('skipBtn')||document.activeElement===sndBtn) return; // let buttons act
+      var ae=document.activeElement;
+      if(ae===bookCta||ae===backBtn||ae===closeBtn) return;   // let buttons act
       e.preventDefault(); walkFwd();
     }
   });
@@ -695,16 +802,27 @@
     else { if(dx<-40) walkFwd(); else if(dx>40) stepBack(); }
   },{passive:true});
 
-  var mainEl=document.querySelector('main'); if(mainEl) mainEl.setAttribute('inert','');   // booking DOM unreachable until the walk releases it
-  scenes[0].classList.add('on'); setCap(0); paintDots(); paintRoom(); armIdle(); preload(0); preloadTravel(0); playScene(scenes[0]);
   if(matchMedia('(pointer:coarse)').matches) hint.textContent='Swipe up to walk through';
-  var replay=document.getElementById('replayWalk');
-  if(replay) replay.addEventListener('click',function(e){ e.preventDefault(); location.reload(); });
-  /* visible Back control + logo-as-Home (Vincent's nav notes) */
+
+  /* ── the walk stays closed until asked for — the home page loads clean ── */
   var backBtn=document.getElementById('backBtn');
-  if(backBtn) backBtn.addEventListener('click',function(e){ e.preventDefault(); startAmb(); calmIdle(); stepBack(); });
+  var closeBtn=document.getElementById('walkClose');
+  function launchWalk(){
+    finished=false; busy=false; i=0;
+    walk.classList.remove('gone','end','canback');
+    walk.style.opacity='';
+    document.body.classList.add('walking');
+    scenes.forEach(function(s,idx){ s.classList.toggle('on',idx===0); if(idx!==0) pauseScene(s); });
+    if(hasGsap&&!reduce) gsap.set(scenes[0],{opacity:1,scale:1,filter:'none'});
+    setCap(0); paintDots(); paintRoom(); armIdle(); preload(0); preloadTravel(0); playScene(scenes[0]);
+    window.scrollTo(0,0);
+  }
+  var replay=document.getElementById('replayWalk');
+  if(replay) replay.addEventListener('click',function(e){ e.preventDefault(); launchWalk(); });
+  if(backBtn) backBtn.addEventListener('click',function(e){ e.preventDefault(); calmIdle(); stepBack(); });
+  if(closeBtn) closeBtn.addEventListener('click',function(e){ e.preventDefault(); closeWalk(false); });
   var wm=document.querySelector('.wm');
-  if(wm) wm.addEventListener('click',function(e){ e.preventDefault(); if(finished){ window.scrollTo({top:0,behavior:'smooth'}); } else { resetToStart(); } });
+  if(wm) wm.addEventListener('click',function(e){ if(!finished&&document.body.classList.contains('walking')){ e.preventDefault(); closeWalk(false); } });   // logo closes the walk if it's open; otherwise the anchor jumps home
   // (reduced-motion shows the static poster by design — no drift, per prefers-reduced-motion)
 
   /* ── booking-page reveals (motion-kit pattern, guarded) ── */
