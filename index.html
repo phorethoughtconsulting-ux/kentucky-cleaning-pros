@@ -47,7 +47,7 @@
   header.solid .hnav{display:flex}
   header.solid .hnav a{color:var(--ink);text-shadow:none}
   header.solid .hnav a:hover{color:var(--green)}
-  @media (max-width:640px){ header .hnav{display:none !important} }  /* phones: lean header; the footer carries the nav */
+  @media (max-width:640px){ header .hnav{display:none !important} header .hbook{display:none} }  /* phones: lean header (just the wordmark); the sticky bottom bar carries Call/Book */
 
   /* ───────────── WALKTHROUGH ───────────── */
   #walk{position:fixed;inset:0;z-index:50;background:#0c0f0d;cursor:pointer;overflow:hidden}
@@ -178,7 +178,7 @@
        box-shadow:0 18px 50px rgba(30,42,37,.08)}
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .fld{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-  .fld label{font-size:12.5px;font-weight:600;letter-spacing:.6px;color:var(--ink)}
+  .fld label{font-size:13.5px;font-weight:600;letter-spacing:.4px;color:var(--ink)}
   .fld input,.fld select,.fld textarea{font-family:var(--sans);font-size:16px;color:var(--ink);background:#FBFDFB;
        border:1px solid rgba(30,42,37,.18);border-radius:10px;padding:13px 14px;min-height:48px;transition:border-color .2s}
   .fld textarea{min-height:84px}
@@ -188,6 +188,16 @@
        font-weight:600;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;padding:16px;border-radius:12px;transition:background .25s}
   button.submit:hover{background:#256648}
   .form-note{font-size:12.5px;color:var(--muted);margin-top:12px;text-align:center}
+  /* branded confirmation — replaces the off-site Formspree dead-end */
+  .book-done{background:var(--surface);border:1px solid rgba(47,125,91,.16);border-radius:18px;
+       padding:clamp(28px,4vw,40px);box-shadow:0 18px 50px rgba(30,42,37,.08);text-align:center;align-self:start}
+  .book-done[hidden]{display:none}
+  .book-done .bd-ok{width:56px;height:56px;margin:0 auto;border-radius:50%;background:var(--green);color:#fff;
+       font-size:28px;line-height:56px;box-shadow:0 12px 28px rgba(47,125,91,.35)}
+  .book-done h3{font-family:var(--serif);font-weight:600;font-size:clamp(23px,3vw,30px);margin-top:18px}
+  .book-done .bd-when{font-family:var(--serif);color:var(--green);font-weight:600;font-size:clamp(17px,2.2vw,21px);margin-top:10px}
+  .book-done .bd-sub{color:var(--muted);font-size:14.5px;line-height:1.6;margin-top:14px;max-width:360px;margin-left:auto;margin-right:auto}
+  .book-done .bd-sub a{color:var(--green);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(47,125,91,.35);white-space:nowrap}
   .call-card{background:var(--ink);color:#F2F6F3;border-radius:18px;padding:clamp(24px,3vw,34px)}
   .call-card .cc-k{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:#B8E6CE;font-weight:600}
   .call-card .cc-t{font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.6vw,30px);margin-top:10px;line-height:1.2}
@@ -354,9 +364,9 @@
       <div>
         <span class="eyebrow">Residential cleaning · Louisville, KY</span>
         <h1>Clean spaces,<br>better places.</h1>
-        <p class="hero-sub">Veteran-owned, fully insured home cleaning across the Louisville area. Honest quotes, a vetted crew, and work that's done when it's actually done.</p>
+        <p class="hero-sub">Veteran-owned, fully insured home cleaning across the Louisville area. Honest pricing, a vetted crew, and work that's done when it's actually done.</p>
         <div class="hero-cta">
-          <a class="btn-primary" href="#book">Get my quote →</a>
+          <a class="btn-primary" href="#book">Book my cleaning →</a>
           <a class="btn-ghost" href="tel:+15025550100">Call (502) 555-0100</a><!-- [PLACEHOLDER phone] -->
         </div>
       </div>
@@ -371,7 +381,7 @@
       <span class="eyebrow">How it works</span>
       <h2>Three steps to a spotless home.</h2>
       <div class="steps" data-reveal-group>
-        <div class="step"><span class="step-n">1</span><h3>Book in 60 seconds</h3><p>Tell us about your home and pick a day — online or by phone. We come back fast with a quote.</p></div>
+        <div class="step"><span class="step-n">1</span><h3>Book in 60 seconds</h3><p>Pick a day and tell us about your home — online or by phone. Vincent confirms your booking himself.</p></div>
         <div class="step"><span class="step-n">2</span><h3>We clean it right</h3><p>A vetted crew arrives ready and cleans room by room, to a veteran's standard.</p></div>
         <div class="step"><span class="step-n">3</span><h3>You relax</h3><p>Come home to clean. Done means done — every surface, every time.</p></div>
       </div>
@@ -381,27 +391,29 @@
   <section class="band" id="book">
     <div class="inner">
       <span class="eyebrow">Book a cleaning</span>
-      <h2>Get your quote in 60 seconds.</h2>
-      <p class="lead">Every home is different — tell us about yours and we'll come back fast with a quote. Prefer to talk? Call and we'll sort it out together.</p>
+      <h2>Book your cleaning.</h2>
+      <p class="lead">Pick a day that works — Vincent personally confirms your booking by text, and squares away the details when he reaches out. Prefer to talk now? Just call.</p>
       <div class="book-grid">
-        <form action="https://formspree.io/f/PLACEHOLDER" method="POST" aria-label="Cleaning quote request"><!-- [PLACEHOLDER endpoint — Vincent's email at launch] -->
+        <form id="bookForm" action="https://formspree.io/f/PLACEHOLDER" method="POST" aria-label="Book a cleaning"><!-- [PLACEHOLDER endpoint — wired when Vincent's booking destination / CRM is chosen] -->
+          <div class="frow">
+            <div class="fld"><label for="f-day">Preferred day</label><input id="f-day" name="preferred_day" type="date" required></div>
+            <div class="fld"><label for="f-time">Time of day</label><select id="f-time" name="time_window"><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
+          </div>
           <div class="frow">
             <div class="fld"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
             <div class="fld"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
           </div>
-          <div class="frow">
-            <div class="fld"><label for="f-beds">Bedrooms</label><select id="f-beds" name="bedrooms"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5+</option></select></div>
-            <div class="fld"><label for="f-baths">Bathrooms</label><select id="f-baths" name="bathrooms"><option>1</option><option selected>2</option><option>3</option><option>4+</option></select></div>
-          </div>
-          <div class="frow">
-            <div class="fld"><label for="f-svc">Service</label><select id="f-svc" name="service"><option>Standard clean</option><option>Deep clean</option><option>Move-in / Move-out</option></select></div>
-            <div class="fld"><label for="f-freq">How often?</label><select id="f-freq" name="frequency"><option>One-time</option><option>Weekly</option><option>Every 2 weeks</option><option>Monthly</option></select></div>
-          </div>
-          <div class="fld"><label for="f-day">Preferred day</label><input id="f-day" name="preferred_day" type="text" placeholder="e.g. next Friday"></div>
-          <div class="fld"><label for="f-notes">Anything we should know?</label><textarea id="f-notes" name="notes" placeholder="Pets, priorities, parking — anything helps."></textarea></div>
-          <button class="submit" type="submit">Request my quote</button>
-          <p class="form-note">No spam, no pressure — just a quote.</p>
+          <div class="fld"><label for="f-svc">What you need</label><select id="f-svc" name="service"><option>Standard clean</option><option>Deep clean</option><option>Move-in / Move-out</option></select></div>
+          <div class="fld"><label for="f-notes">Anything we should know? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="f-notes" name="notes" placeholder="Beds, baths, pets, parking — anything that helps Vincent confirm."></textarea></div>
+          <button class="submit" type="submit">Book my cleaning</button>
+          <p class="form-note">No spam, no pressure — Vincent confirms every booking himself.</p>
         </form>
+        <div class="book-done" id="bookDone" hidden role="status" aria-live="polite">
+          <div class="bd-ok" aria-hidden="true">✓</div>
+          <h3>You're pencilled in.</h3>
+          <p class="bd-when" id="bdWhen"></p>
+          <p class="bd-sub">Vincent will text your confirmation shortly. Need it sooner? Call <a href="tel:+15025550100">(502) 555-0100</a>.</p>
+        </div>
         <div class="call-card">
           <div class="cc-k">Or just call</div>
           <div class="cc-t">Talk to a real person about your home.</div>
@@ -419,11 +431,11 @@
       <h2>Three ways to get your place back.</h2>
       <div class="svc-grid" data-reveal-group>
         <a class="svc" href="#book"><img src="img/S4-livingroom-midclean.jpg" alt="" loading="lazy">
-          <div class="sv-b"><h3>Standard clean</h3><p>The regular reset — floors, surfaces, kitchens, baths. The house you meant to keep, kept.</p><div class="sv-q">Quote in 60 seconds →</div></div></a>
+          <div class="sv-b"><h3>Standard clean</h3><p>The regular reset — floors, surfaces, kitchens, baths. The house you meant to keep, kept.</p><div class="sv-q">Book in 60 seconds →</div></div></a>
         <a class="svc" href="#book"><img src="img/S5-kitchen-brighter.jpg" alt="" loading="lazy">
-          <div class="sv-b"><h3>Deep clean</h3><p>Every surface, every time — baseboards, appliances, the corners nobody sees. The full wake-up.</p><div class="sv-q">Quote in 60 seconds →</div></div></a>
+          <div class="sv-b"><h3>Deep clean</h3><p>Every surface, every time — baseboards, appliances, the corners nobody sees. The full wake-up.</p><div class="sv-q">Book in 60 seconds →</div></div></a>
         <a class="svc" href="#book"><img src="img/S6-bathroom-sparkling.jpg" alt="" loading="lazy">
-          <div class="sv-b"><h3>Move-in / Move-out</h3><p>Empty-home top to bottom — ready for keys, deposits, and fresh starts.</p><div class="sv-q">Quote in 60 seconds →</div></div></a>
+          <div class="sv-b"><h3>Move-in / Move-out</h3><p>Empty-home top to bottom — ready for keys, deposits, and fresh starts.</p><div class="sv-q">Book in 60 seconds →</div></div></a>
       </div>
       <div class="trust" data-reveal-group>
         <span class="badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l2.4 5.3L20 8l-4 4 1 5.7L12 15l-5 2.7L8 12 4 8l5.6-.7L12 2z" fill="#2F7D5B"/></svg>Veteran-owned</span>
@@ -452,7 +464,7 @@
       <span class="eyebrow">Good to know</span>
       <h2>Questions, answered.</h2>
       <div class="faq" data-reveal-group>
-        <details><summary>How do I get a quote?</summary><p>Fill out the 60-second form above or give us a call. Tell us a little about your home and we'll come back fast with a quote — no spam, no pressure.</p></details>
+        <details><summary>How do I book a cleaning?</summary><p>Pick a day on the form above or give us a call. Vincent personally reviews every booking and texts you back to confirm the details — no spam, no pressure.</p></details>
         <details><summary>What's the difference between a standard, deep, and move-in / move-out clean?</summary><p>A standard clean is the regular reset — floors, surfaces, kitchen and baths. A deep clean adds the detail work: baseboards, appliances, and the corners a standard skips. Move-in / move-out is an empty-home clean, top to bottom, ready for keys or a deposit.</p></details>
         <details><summary>Are you insured?</summary><p>Yes — Kentucky Cleaning Pros is veteran-owned and fully insured.</p></details>
         <details><summary>Do I need to be home during the cleaning?</summary><p>It's entirely up to you. Many clients leave access instructions and come home to a finished house; others prefer to be there. Whatever's comfortable — just let us know when you book.</p></details>
@@ -470,7 +482,7 @@
       <div style="display:grid;grid-template-columns:130px 1fr;gap:clamp(20px,4vw,40px);align-items:start;margin-top:34px" data-reveal-group>
         <div style="width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,#2F7D5B,#1E5B41);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:600;font-size:42px;color:#F7F9F7;box-shadow:0 14px 34px rgba(47,125,91,.3)" aria-hidden="true">VB</div><!-- [PLACEHOLDER: swap for Vincent's real photo at launch — never a stock face] -->
         <div>
-          <p class="lead" style="max-width:640px;margin-top:0"><strong style="color:var(--ink)">Vincent Barnes</strong> is a Navy veteran and Louisville builder. The discipline he learned in the service — show up, do it right, leave it better than you found it — is the whole company. Kentucky Cleaning Pros brings that standard into homes across Louisville: a vetted crew, honest quotes, and work that's done when it's actually done.</p>
+          <p class="lead" style="max-width:640px;margin-top:0"><strong style="color:var(--ink)">Vincent Barnes</strong> is a Navy veteran and Louisville builder. The discipline he learned in the service — show up, do it right, leave it better than you found it — is the whole company. Kentucky Cleaning Pros brings that standard into homes across Louisville: a vetted crew, honest pricing, and work that's done when it's actually done.</p>
           <p class="lead" style="max-width:640px;margin-top:12px;font-style:italic">"Clean spaces, better places" isn't a slogan — it's what we leave behind in every room.</p>
         </div>
       </div>
@@ -521,16 +533,9 @@
 <!-- concept preview overlay (owner handoff — dismiss persists per session) -->
 <div id="poc" role="dialog" aria-label="Concept preview notice">
   <div class="p-card">
-    <h3>Your site — private preview</h3>
-    <p>Vincent — this is your real site on your real domain. It's <b>built and ready to go live.</b> To flip it on, we just need a few real details from you:</p>
-    <ul class="need">
-      <li>Your business <b>phone number</b></li>
-      <li>The <b>email</b> where quote requests should land</li>
-      <li>A <b>real photo of you</b> for the “About” section</li>
-      <li>Confirm you're <b>veteran-owned</b> &amp; <b>fully insured</b> (both are on the site)</li>
-      <li>Are you <b>hiring</b>? If so, where should applications go?</li>
-    </ul>
-    <p class="pnote">Send those over and it's live within the day. Until then it stays private — search engines can't find it. Take a look around — the cinematic walkthrough is one tap away under the booking form.</p>
+    <h3>A private preview</h3>
+    <p>This is your real site on your real domain — <b>built and ready to go live.</b> It's private and unlisted, so search engines can't find it yet.</p>
+    <p class="pnote">Vincent — tap <b>"For Vincent"</b> in the bottom corner and enter your code to see where your project stands and what's next.</p>
     <button id="pocBtn" type="button">See my site →</button>
   </div>
 </div>
@@ -558,15 +563,17 @@
           <li>Live on your own domains, secured with HTTPS</li>
           <li>Privacy Policy &amp; Terms in place</li>
           <li>Your cinematic walkthrough — the walk through a home into the booking page</li>
+          <li>A real <b>booking flow</b> — customers pick a day, you're notified, you confirm by text</li>
+          <li><b>Mobile-first</b> — clean and simple on a phone, easy for any age to book</li>
         </ul>
       </div>
       <div class="vin-sec need">
         <div class="h">Needed from you — to flip it fully public</div>
         <ul>
           <li>Your business <b>phone number</b></li>
-          <li>The <b>email</b> where quote requests should land</li>
+          <li><b>Where bookings should go</b> — your booking tool / CRM (Jobber, Housecall Pro…), or we'll set one up; an email works to start</li>
           <li>A <b>real photo of you</b> for the “About” section</li>
-          <li>Confirm you're <b>veteran-owned</b> &amp; <b>fully insured</b></li>
+          <li>Confirm you're <b>fully insured</b></li>
           <li>Are you <b>hiring</b>? If so, where should applications go?</li>
         </ul>
       </div>
@@ -601,7 +608,7 @@
         ['WELCOME','Come on in.','We’ll show you what we do.'],
         ['LIFE GETS BUSY','That’s not a flaw — that’s a family.','It’s also where we come in.'],
         ['THE CREW','The people you’ll trust your home to.','Veteran-owned · Fully insured'],
-        ['WHAT WE DO','Standard · Deep · Move-in / Move-out','Every home is different — your quote takes 60 seconds.'],
+        ['WHAT WE DO','Standard · Deep · Move-in / Move-out','Every home is different — booking takes just 60 seconds.'],
         null,
         ['DONE MEANS DONE','Book → Clean → Relax.','Every surface, every time.'],
         null,
@@ -858,6 +865,29 @@
       var kids=gsap.utils.toArray(group.children);
       gsap.set(kids,{opacity:0,y:30});
       ScrollTrigger.batch(kids,{start:'top 88%',once:true,onEnter:function(b){gsap.to(b,{opacity:1,y:0,duration:.9,ease:'power2.out',stagger:.1});}});
+    });
+  }
+
+  /* ── booking: pick a slot → branded on-page confirmation ──
+     PREVIEW: no live endpoint yet. Native `required` gates the fields, then this shows the
+     confirmation. When Vincent's booking destination / CRM is chosen, POST there (fetch) before
+     revealing #bookDone — everything else already works. */
+  var bookForm=document.getElementById('bookForm'), bookDone=document.getElementById('bookDone');
+  if(bookForm&&bookDone){
+    var fday=document.getElementById('f-day');   // no booking a day in the past
+    if(fday){ var td=new Date(); fday.min=td.getFullYear()+'-'+('0'+(td.getMonth()+1)).slice(-2)+'-'+('0'+td.getDate()).slice(-2); }
+    var WD=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    bookForm.addEventListener('submit',function(e){
+      e.preventDefault();
+      var dayV=(document.getElementById('f-day')||{}).value||'';
+      var timeV=(document.getElementById('f-time')||{}).value||'';
+      var whenTxt=timeV;
+      if(dayV){ var p=dayV.split('-'); var d=new Date(+p[0],+p[1]-1,+p[2]);
+        if(!isNaN(d)) whenTxt=WD[d.getDay()]+', '+MO[d.getMonth()]+' '+(+p[2])+'  ·  '+timeV; }
+      var w=document.getElementById('bdWhen'); if(w) w.textContent=whenTxt;
+      bookForm.hidden=true; bookDone.hidden=false;
+      try{ bookDone.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }catch(e2){}
     });
   }
 })();
