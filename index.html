@@ -142,6 +142,22 @@
   .faq details p{color:var(--muted);font-size:15px;line-height:1.62;padding:0 44px 24px 0;margin-top:-4px}
   @media (max-width:860px){ .steps{grid-template-columns:1fr} .inc-list{grid-template-columns:1fr} }
 
+  /* ───────────── STICKY MOBILE ACTION BAR (phones only) ───────────── */
+  .mbar{display:none}
+  @media (max-width:640px){
+    .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:58;gap:10px;
+      padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));
+      background:rgba(247,249,247,.94);backdrop-filter:blur(10px);border-top:1px solid rgba(30,42,37,.1)}
+    .mbar a{flex:1;text-align:center;padding:14px 12px;border-radius:12px;font-family:var(--sans);font-weight:600;
+      font-size:14px;letter-spacing:.3px;text-decoration:none;min-height:48px;display:flex;align-items:center;justify-content:center}
+    .mbar .m-call{background:var(--surface);border:1.5px solid rgba(47,125,91,.35);color:var(--green)}
+    .mbar .m-book{background:var(--green);color:#fff}
+    .mbar a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+    body{padding-bottom:74px}                 /* clear space so the bar never covers the footer */
+    body.walking .mbar{display:none}          /* hidden during the immersive walk */
+    #vinTab{bottom:86px}                       /* preview tab rides above the bar */
+  }
+
   /* ───────────── BOOKING PAGE ───────────── */
   main{position:relative;z-index:1}
   .band{padding:clamp(64px,9vw,110px) clamp(20px,5vw,48px)}
@@ -491,6 +507,12 @@
     </div>
   </footer>
 </main>
+
+<!-- sticky mobile action bar — one-tap Call / Book on phones -->
+<div class="mbar" role="navigation" aria-label="Quick actions">
+  <a class="m-call" href="tel:+15025550100">Call</a><!-- [PLACEHOLDER phone] -->
+  <a class="m-book" href="#book">Book now</a>
+</div>
 
 <!-- concept preview overlay (owner handoff — dismiss persists per session) -->
 <div id="poc" role="dialog" aria-label="Concept preview notice">
