@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instant Cleaning Estimate — Kentucky Cleaning Pros</title>
+<meta name="description" content="Estimate your Kentucky Cleaning Pros cleaning in seconds — by bedrooms, service, and how often.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#091A45">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23091A45'/%3E%3Ctext x='16' y='21' font-family='Georgia,serif' font-size='11' fill='%23F7F9F7' text-anchor='middle'%3EKCP%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--bg:#F1F4F0;--surface:#FFFFFF;--navy:#091A45;--green:#5D9627;--muted:#5c6672;--line:#e4e7ec;
+    --serif:'Fraunces',Georgia,serif;--sans:'Figtree',system-ui,sans-serif}
+  html,body{overflow-x:hidden}
+  body{font-family:var(--sans);background:var(--bg);color:var(--navy);line-height:1.55;-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:26px 18px 40px}
+  .logo{height:46px;width:auto;margin-bottom:22px}
+  .card{background:var(--surface);width:100%;max-width:520px;border-radius:22px;box-shadow:0 26px 70px rgba(9,26,69,.13);
+    border:1px solid var(--line);padding:clamp(24px,5vw,38px)}
+  .eyebrow{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);font-weight:700;text-align:center}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(26px,5vw,34px);line-height:1.1;text-align:center;margin:8px 0 6px}
+  .sub{color:var(--muted);font-size:14.5px;text-align:center;max-width:400px;margin:0 auto 26px}
+  .grp{margin-bottom:22px}
+  .grp-label{font-weight:600;font-size:13.5px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:baseline}
+  .grp-label .val{color:var(--green);font-weight:700}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:7px;border-radius:999px;background:#e6eae2;outline:none;margin:4px 0}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;
+    background:var(--green);cursor:pointer;border:3px solid #fff;box-shadow:0 2px 8px rgba(93,150,39,.5)}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--green);cursor:pointer;border:3px solid #fff;box-shadow:0 2px 8px rgba(93,150,39,.5)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{flex:1 1 auto;text-align:center;border-radius:11px;border:1.5px solid #d5dae0;padding:11px 12px;font-size:13.5px;font-weight:600;
+    background:#fff;color:var(--navy);cursor:pointer;transition:.15s;min-height:44px;display:flex;align-items:center;justify-content:center}
+  .chip:hover{border-color:var(--green)}
+  .chip.on{background:var(--green);color:#fff;border-color:var(--green)}
+  .result{text-align:center;background:#F6F9F3;border:1px solid #dfeacf;border-radius:16px;padding:22px 18px;margin:26px 0 4px}
+  .result .rk{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .result .amt{font-family:var(--serif);font-weight:700;font-size:clamp(42px,10vw,56px);color:var(--navy);line-height:1.05;margin-top:4px}
+  .result .save{color:var(--green);font-weight:700;font-size:13.5px;margin-top:4px;min-height:18px}
+  .note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:12px}
+  .cta{display:block;width:100%;text-align:center;background:var(--green);color:#fff;text-decoration:none;font-weight:700;
+    font-size:16px;letter-spacing:.3px;padding:16px;border-radius:13px;margin-top:22px;border:none;cursor:pointer;transition:background .2s}
+  .cta:hover{background:#4e8020}
+  .foot{margin-top:22px;font-size:12px;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+  <img class="logo" src="img/kcp-logo.png" alt="Kentucky Cleaning Pros">
+  <div class="card">
+    <div class="eyebrow">Instant Estimate</div>
+    <h1>Estimate your cleaning.</h1>
+    <p class="sub">Adjust the details below to see a ballpark price. We confirm your exact quote when you book.</p>
+
+    <div class="grp">
+      <div class="grp-label"><span>Bedrooms</span><span class="val" id="bdVal">2 bedrooms</span></div>
+      <input type="range" id="bd" min="1" max="5" step="1" value="2">
+    </div>
+
+    <div class="grp">
+      <div class="grp-label"><span>Service</span></div>
+      <div class="chips" id="svc">
+        <button class="chip on" data-k="standard">Standard</button>
+        <button class="chip" data-k="premium">Premium</button>
+        <button class="chip" data-k="deep">Deep · VIP</button>
+        <button class="chip" data-k="move">Move-In / Out</button>
+      </div>
+    </div>
+
+    <div class="grp">
+      <div class="grp-label"><span>How often</span></div>
+      <div class="chips" id="frq">
+        <button class="chip on" data-k="one">One-time</button>
+        <button class="chip" data-k="weekly">Weekly · 20% off</button>
+        <button class="chip" data-k="bi">Bi-weekly · 15% off</button>
+        <button class="chip" data-k="monthly">Monthly · 10% off</button>
+      </div>
+    </div>
+
+    <div class="result">
+      <div class="rk">Estimated total</div>
+      <div class="amt" id="amt">$165</div>
+      <div class="save" id="save"></div>
+    </div>
+    <p class="note">Estimate only — every home is different, so we confirm your exact price when you book.</p>
+
+    <button class="cta" id="cta" onclick="history.back()">← Back to book my cleaning</button>
+    <div class="foot">Kentucky Cleaning Pros · Louisville, KY · (502) 586-3153</div>
+  </div>
+
+<script>
+(function(){
+  var prices={
+    1:{standard:145,premium:165,deep:225,move:325},
+    2:{standard:165,premium:185,deep:255,move:375},
+    3:{standard:190,premium:215,deep:295,move:425},
+    4:{standard:215,premium:245,deep:345,move:495},
+    5:{standard:250,premium:285,deep:395,move:575}
+  };
+  var disc={one:0,weekly:.20,bi:.15,monthly:.10};
+  var bd=document.getElementById('bd'),bdVal=document.getElementById('bdVal'),
+      svc=document.getElementById('svc'),frq=document.getElementById('frq'),
+      amt=document.getElementById('amt'),save=document.getElementById('save');
+  function active(g){var el=g.querySelector('.on');return el?el.getAttribute('data-k'):null;}
+  function label(){var v=+bd.value;bdVal.textContent=(v===5?'5+':v)+(v===1?' bedroom':' bedrooms');}
+  function calc(){
+    var v=+bd.value,s=active(svc)||'standard',f=active(frq)||'one';
+    var base=(prices[v]||prices[2])[s];
+    var d=disc[f]||0, total=Math.round(base*(1-d));
+    amt.textContent='$'+total;
+    save.textContent = d>0 ? 'You save $'+(base-total)+' per clean' : '';
+  }
+  function pick(e,g){var t=e.target.closest('.chip');if(!t)return;
+    Array.prototype.forEach.call(g.querySelectorAll('.chip'),function(b){b.classList.remove('on');});
+    t.classList.add('on');calc();}
+  bd.addEventListener('input',function(){label();calc();});
+  svc.addEventListener('click',function(e){pick(e,svc);});
+  frq.addEventListener('click',function(e){pick(e,frq);});
+  label();calc();
+})();
+</script>
+</body>
+</html>
