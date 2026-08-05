@@ -6,7 +6,7 @@
 <title>Kentucky Cleaning Pros — Clean spaces, better places. | Louisville, KY</title>
 <meta name="description" content="Residential cleaning in the Louisville area — walk through a home as we bring it back to life, then book yours. Veteran-owned. Clean spaces, better places.">
 <meta name="theme-color" content="#091A45">
-<meta name="robots" content="noindex"><!-- preview: remove at launch when Vincent's real contact goes live -->
+<meta name="robots" content="index, follow">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23091A45'/%3E%3Ctext x='16' y='21' font-family='Georgia,serif' font-size='11' fill='%23F7F9F7' text-anchor='middle'%3EKCP%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kentucky Cleaning Pros — Clean spaces, better places.">
@@ -183,7 +183,6 @@
     .mbar a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
     body{padding-bottom:74px}                 /* clear space so the bar never covers the footer */
     body.walking .mbar{display:none}          /* hidden during the immersive walk */
-    #vinTab{bottom:86px}                       /* preview tab rides above the bar */
   }
 
   /* ───────────── BOOKING PAGE ───────────── */
@@ -305,19 +304,6 @@
     font-weight:600;font-size:14px;letter-spacing:1px;padding:15px 30px;border-radius:12px;transition:transform .2s,background .25s}
   .hiring .apply:hover{transform:translateY(-2px);background:#256648}
 
-  /* concept preview overlay (owner handoff) */
-  #poc{position:fixed;inset:0;z-index:90;background:rgba(14,20,17,.86);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px}
-  #poc .p-card{background:var(--surface);border-radius:18px;box-sizing:border-box;width:100%;max-width:430px;padding:30px;text-align:center}
-  #poc h3{font-family:var(--serif);font-size:24px;font-weight:600}
-  #poc p{color:var(--muted);font-size:14.5px;line-height:1.6;margin-top:10px}
-  #poc button{margin-top:20px;cursor:pointer;background:var(--green);color:#fff;border:none;font-weight:600;font-size:14px;letter-spacing:1px;padding:13px 26px;border-radius:10px}
-  #poc .p-card b{color:var(--ink);font-weight:600}
-  #poc .need{list-style:none;text-align:left;margin:16px auto 2px;max-width:340px;display:flex;flex-direction:column;gap:10px}
-  #poc .need li{position:relative;padding-left:28px;font-size:13.5px;color:#3f4b45;line-height:1.4}
-  #poc .need li::before{content:'';position:absolute;left:0;top:1px;width:16px;height:16px;border-radius:5px;border:2px solid var(--green);background:#fff}
-  #poc .pnote{font-size:12.5px;color:var(--muted);margin-top:15px;line-height:1.55}
-  #poc.hide{display:none}
-
   @media (max-width:860px){
     .book-grid{grid-template-columns:1fr}
     .svc-grid{grid-template-columns:1fr}
@@ -329,48 +315,12 @@
     .cap{bottom:clamp(64px,10vh,90px)}          /* clear of the hint + safe-area on phones */
     .hint{bottom:calc(14px + env(safe-area-inset-bottom,0px))}
     #bookCta{bottom:clamp(110px,20vh,160px)}
-    #poc{padding:16px}
-    #poc .p-card{padding:26px 22px}
-    #poc h3{font-size:21px}
-    #poc p{font-size:13.5px}
-    #poc .need{max-width:100%}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .scene{transition:opacity .4s ease}
     .svc,#bookCta,.call-card a.big-tel{transition:none}
   }
-  /* ═══ PREVIEW-ONLY: private "For Vincent" status channel — remove at launch ═══ */
-  #vinTab{position:fixed;right:16px;bottom:16px;z-index:80;cursor:pointer;background:var(--ink);color:#F2F6F3;
-    border:1px solid rgba(255,255,255,.16);font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.4px;
-    padding:10px 16px;border-radius:30px;box-shadow:0 8px 24px rgba(14,20,17,.4);display:flex;align-items:center;gap:8px;transition:transform .2s,background .2s}
-  #vinTab::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(232,181,99,.25)}
-  #vinTab:hover{background:#0B1836;transform:translateY(-1px)}
-  @media (max-width:600px){ #vinTab{right:12px;bottom:12px;font-size:11px;padding:9px 14px} }
-  #vinModal{position:fixed;inset:0;z-index:96;background:rgba(14,20,17,.74);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:22px}
-  #vinModal[hidden]{display:none}
-  #vinModal .vin-card{background:#fff;border-radius:18px;max-width:440px;width:100%;padding:30px 30px 32px;position:relative;max-height:88vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.45)}
-  .vin-x{position:absolute;top:12px;right:15px;background:none;border:none;font-size:26px;line-height:1;color:var(--muted);cursor:pointer}
-  #vinGate{text-align:center}
-  .vin-lock{font-size:30px}
-  #vinGate h3{font-family:var(--serif);font-size:24px;font-weight:600;margin-top:4px}
-  #vinGate p{color:var(--muted);font-size:14px;line-height:1.55;margin-top:8px}
-  #vinCode{width:100%;margin-top:16px;font-family:var(--sans);font-size:18px;text-align:center;letter-spacing:6px;padding:14px;border:1.5px solid rgba(30,42,37,.2);border-radius:12px;color:var(--ink)}
-  #vinCode:focus{outline:none;border-color:var(--green)}
-  .vin-go{width:100%;margin-top:12px;cursor:pointer;background:var(--green);color:#fff;border:none;font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:.5px;padding:14px;border-radius:12px;transition:background .2s}
-  .vin-go:hover{background:#256648}
-  .vin-err{color:#b3402f;font-size:13px;margin-top:10px;min-height:16px}
-  #vinPanel h3{font-family:var(--serif);font-size:23px;font-weight:600}
-  #vinPanel .status{display:inline-flex;align-items:center;gap:6px;margin-top:9px;background:#EAF3EC;color:var(--green);border:1px solid rgba(93,150,39,.3);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;letter-spacing:.4px}
-  .vin-sec{margin-top:20px}
-  .vin-sec .h{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--green)}
-  .vin-sec ul{list-style:none;margin-top:9px;display:flex;flex-direction:column;gap:8px}
-  .vin-sec li{font-size:13.5px;color:#3f4b45;line-height:1.45;padding-left:24px;position:relative}
-  .vin-sec li b{color:var(--ink);font-weight:600}
-  .vin-sec.done li::before{content:'✓';position:absolute;left:1px;top:-1px;color:var(--green);font-weight:700;font-size:14px}
-  .vin-sec.need li::before{content:'';position:absolute;left:2px;top:3px;width:12px;height:12px;border:2px solid var(--green);border-radius:4px}
-  .vin-next{margin-top:20px;background:#EFF5F0;border-radius:12px;padding:15px 18px;font-size:13.5px;color:#3f4b45;line-height:1.55}
-  .vin-next b{color:var(--ink);font-weight:600}
 </style>
 </head>
 <body>
@@ -382,10 +332,10 @@
       <a href="#services">Services</a>
       <a href="#about">About</a>
       <a href="#faq">FAQ</a>
-      <a href="https://link.tidytrack.io/preview/myeqnNH7e6JdKaTMIbCe?notrack=true#section-qRbixkdLmB">Book</a>
+      <a href="https://booking.kentuckycleaningpros.com/">Book</a>
     </nav>
     <a class="tel" href="tel:+15025863153">(502) 586-3153</a>
-    <a class="hbook" href="https://link.tidytrack.io/preview/myeqnNH7e6JdKaTMIbCe?notrack=true#section-qRbixkdLmB">Book now →</a>
+    <a class="hbook" href="https://booking.kentuckycleaningpros.com/">Book now →</a>
   </div>
 </header>
 <div id="wprog" aria-hidden="true" style="position:fixed;top:0;left:0;height:3px;width:0;background:var(--green);z-index:70;transition:width .6s ease"></div>
@@ -424,7 +374,7 @@
         <h1>Clean spaces,<br>better places.</h1>
         <p class="hero-sub">Veteran-owned home cleaning across the Louisville area. Honest pricing, real care, and work that's done when it's actually done.</p>
         <div class="hero-cta">
-          <a class="btn-primary" href="https://link.tidytrack.io/preview/myeqnNH7e6JdKaTMIbCe?notrack=true#section-qRbixkdLmB">Book my cleaning →</a>
+          <a class="btn-primary" href="https://booking.kentuckycleaningpros.com/">Book my cleaning →</a>
           <a class="btn-ghost" href="quote.html">Get an instant estimate →</a>
         </div>
       </div>
@@ -472,7 +422,7 @@
       <h2>Ready for a spotless home?</h2>
       <p class="lead">Booking takes about 60 seconds and we confirm every cleaning ourselves. Not sure yet? Get an instant estimate first — then book when you're ready.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px">
-        <a class="btn-primary" href="https://link.tidytrack.io/preview/myeqnNH7e6JdKaTMIbCe?notrack=true#section-qRbixkdLmB" style="font-size:16px;padding:17px 34px">Book my cleaning →</a>
+        <a class="btn-primary" href="https://booking.kentuckycleaningpros.com/" style="font-size:16px;padding:17px 34px">Book my cleaning →</a>
         <a class="btn-ghost" href="quote.html" style="font-size:16px;padding:17px 30px">Get an instant estimate →</a>
       </div>
       <p style="margin-top:24px;font-size:14.5px;color:var(--muted)">Prefer to talk? Call <a href="tel:+15025863153" style="color:var(--green);font-weight:600;text-decoration:none">(502) 586-3153</a> · Veteran-owned, fully insured, Louisville local.</p>
@@ -485,13 +435,13 @@
       <span class="eyebrow">What we do</span>
       <h2>Four ways to get your place back.</h2>
       <div class="svc-grid" data-reveal-group>
-        <a class="svc" href="https://link.tidytrack.io/preview/myeqnNH7e6JdKaTMIbCe?notrack=true#section-qRbixkdLmB"><img src="img/S4-livingroom-midclean.jpg" alt="" loading="lazy">
+        <a class="svc" href="https://booking.kentuckycleaningpros.com/"><img src="img/S4-livingroom-midclean.jpg" alt="" loading="lazy">
           <div class="sv-b"><h3>Standard clean</h3><p>The regular reset — floors, surfaces, kitchens, baths. The house you meant to keep, kept.</p><div class="sv-q">Book in 60 seconds →</div></div></a>
-        <a class="svc" href="https://link.tidytrack.io/preview/myeqnNH7e6JdKaTMIbCe?notrack=true#section-qRbixkdLmB"><img src="img/S7-foyer-gleaming.jpg" alt="" loading="lazy">
+        <a class="svc" href="https://booking.kentuckycleaningpros.com/"><img src="img/S7-foyer-gleaming.jpg" alt="" loading="lazy">
           <div class="sv-b"><h3>Premium clean</h3><p>Standard, elevated — extra detail and high-touch finishes, the little things people notice.</p><div class="sv-q">Book in 60 seconds →</div></div></a>
-        <a class="svc" href="https://link.tidytrack.io/preview/myeqnNH7e6JdKaTMIbCe?notrack=true#section-qRbixkdLmB"><img src="img/S5-kitchen-brighter.jpg" alt="" loading="lazy">
+        <a class="svc" href="https://booking.kentuckycleaningpros.com/"><img src="img/S5-kitchen-brighter.jpg" alt="" loading="lazy">
           <div class="sv-b"><h3>Deep · VIP clean</h3><p>Every surface, every time — baseboards, appliances, the corners nobody sees. The full wake-up.</p><div class="sv-q">Book in 60 seconds →</div></div></a>
-        <a class="svc" href="https://link.tidytrack.io/preview/myeqnNH7e6JdKaTMIbCe?notrack=true#section-qRbixkdLmB"><img src="img/S6-bathroom-sparkling.jpg" alt="" loading="lazy">
+        <a class="svc" href="https://booking.kentuckycleaningpros.com/"><img src="img/S6-bathroom-sparkling.jpg" alt="" loading="lazy">
           <div class="sv-b"><h3>Move-in / Move-out</h3><p>Empty-home top to bottom — ready for keys, deposits, and fresh starts.</p><div class="sv-q">Book in 60 seconds →</div></div></a>
       </div>
       <div class="trust" data-reveal-group>
@@ -521,7 +471,7 @@
       <span class="eyebrow">Good to know</span>
       <h2>Questions, answered.</h2>
       <div class="faq" data-reveal-group>
-        <details><summary>How do I book a cleaning?</summary><p>Pick a day on the form above or give us a call. Vincent personally reviews every booking and texts you back to confirm the details — no spam, no pressure.</p></details>
+        <details><summary>How do I book a cleaning?</summary><p>Pick a day on the form above or give us a call. We personally review every booking and text you back to confirm the details — no spam, no pressure.</p></details>
         <details><summary>What's the difference between Standard, Premium, Deep / VIP, and Move-out?</summary><p>Standard is the regular reset — floors, surfaces, kitchen and baths. Premium is standard elevated, with extra detail and high-touch finishes. Deep / VIP goes further — baseboards, appliances, and the corners a standard skips. Move-in / move-out is an empty-home clean, top to bottom, ready for keys or a deposit.</p></details>
         <details><summary>Are you insured?</summary><p>Yes — Kentucky Cleaning Pros is fully insured. We're veteran-owned, and every job is done to a veteran's standard of care.</p></details>
         <details><summary>Do I need to be home during the cleaning?</summary><p>It's entirely up to you. Many clients leave access instructions and come home to a finished house; others prefer to be there. Whatever's comfortable — just let us know when you book.</p></details>
@@ -537,9 +487,9 @@
       <span class="eyebrow">The founder</span>
       <h2>Built on a veteran's standard.</h2>
       <div style="display:grid;grid-template-columns:130px 1fr;gap:clamp(20px,4vw,40px);align-items:start;margin-top:34px" data-reveal-group>
-        <div style="width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,#5D9627,#1E5B41);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:600;font-size:42px;color:#F7F9F7;box-shadow:0 14px 34px rgba(93,150,39,.3)" aria-hidden="true">VB</div><!-- [PLACEHOLDER: swap for Vincent's real photo at launch — never a stock face] -->
+        <div style="width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,#5D9627,#1E5B41);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:600;font-size:42px;color:#F7F9F7;box-shadow:0 14px 34px rgba(93,150,39,.3)" aria-hidden="true">KCP</div><!-- [PLACEHOLDER: swap for a real founder/crew photo at launch — never a stock face] -->
         <div>
-          <p class="lead" style="max-width:640px;margin-top:0"><strong style="color:var(--ink)">Vincent Barnes</strong> is a Navy veteran and Louisville builder. The discipline he learned in the service — show up, do it right, leave it better than you found it — is the whole company. Kentucky Cleaning Pros brings that standard into homes across Louisville: a vetted crew, honest pricing, and work that's done when it's actually done.</p>
+          <p class="lead" style="max-width:640px;margin-top:0">Kentucky Cleaning Pros was <strong style="color:var(--ink)">founded by a Navy veteran and Louisville builder.</strong> The discipline of the service — show up, do it right, leave it better than you found it — is the whole company. Kentucky Cleaning Pros brings that standard into homes across Louisville: a vetted crew, honest pricing, and work that's done when it's actually done.</p>
           <p class="lead" style="max-width:640px;margin-top:12px;font-style:italic">"Clean spaces, better places" isn't a slogan — it's what we leave behind in every room.</p>
         </div>
       </div>
@@ -568,7 +518,7 @@
       <a href="#services">Services</a>
       <a href="#about">About</a>
       <a href="#faq">FAQ</a>
-      <a href="https://link.tidytrack.io/preview/myeqnNH7e6JdKaTMIbCe?notrack=true#section-qRbixkdLmB">Book a cleaning</a>
+      <a href="https://booking.kentuckycleaningpros.com/">Book a cleaning</a>
       <a href="#hiring">We're hiring</a>
       <a href="privacy.html">Privacy</a>
       <a href="terms.html">Terms</a>
@@ -584,71 +534,14 @@
 <!-- sticky mobile action bar — one-tap Call / Book on phones -->
 <div class="mbar" role="navigation" aria-label="Quick actions">
   <a class="m-call" href="tel:+15025863153">Call</a>
-  <a class="m-book" href="https://link.tidytrack.io/preview/myeqnNH7e6JdKaTMIbCe?notrack=true#section-qRbixkdLmB">Book now</a>
+  <a class="m-book" href="https://booking.kentuckycleaningpros.com/">Book now</a>
 </div>
 
-<!-- concept preview overlay (owner handoff — dismiss persists per session) -->
-<div id="poc" role="dialog" aria-label="Concept preview notice">
-  <div class="p-card">
-    <h3>A private preview</h3>
-    <p>This is your real site on your real domain — <b>built and ready to go live.</b> It's private and unlisted, so search engines can't find it yet.</p>
-    <p class="pnote">Vincent — tap <b>"For Vincent"</b> in the bottom corner and enter your code to see where your project stands and what's next.</p>
-    <button id="pocBtn" type="button">See my site →</button>
-  </div>
-</div>
-
-<!-- ═══ PREVIEW-ONLY: private "For Vincent" status channel — remove at launch ═══ -->
-<button id="vinTab" type="button" aria-haspopup="dialog">For Vincent</button>
-<div id="vinModal" role="dialog" aria-modal="true" aria-label="For Vincent" hidden>
-  <div class="vin-card">
-    <button class="vin-x" id="vinClose" type="button" aria-label="Close">×</button>
-    <div id="vinGate">
-      <div class="vin-lock">🔒</div>
-      <h3>For Vincent</h3>
-      <p>Enter your access code to see exactly where your project stands.</p>
-      <input id="vinCode" type="text" inputmode="numeric" placeholder="• • • •" aria-label="Access code" autocomplete="off">
-      <button class="vin-go" id="vinUnlock" type="button">Unlock →</button>
-      <div class="vin-err" id="vinErr" aria-live="polite"></div>
-    </div>
-    <div id="vinPanel" hidden>
-      <h3>Where your project stands</h3>
-      <span class="status">Built &amp; live-ready</span>
-      <div class="vin-sec done">
-        <div class="h">Done</div>
-        <ul>
-          <li>Both sites built — <b>vincentbarnes.com</b> &amp; <b>kentuckycleaningpros.com</b></li>
-          <li>Live on your own domains, secured with HTTPS</li>
-          <li>Privacy Policy &amp; Terms in place</li>
-          <li>Your cinematic walkthrough — the walk through a home into the booking page</li>
-          <li>A real <b>booking flow</b> — customers pick a day, you're notified, you confirm by text</li>
-          <li><b>Mobile-first</b> — clean and simple on a phone, easy for any age to book</li>
-        </ul>
-      </div>
-      <div class="vin-sec need">
-        <div class="h">Needed from you — to flip it fully public</div>
-        <ul>
-          <li>Your business <b>phone number</b></li>
-          <li><b>Where bookings should go</b> — your booking tool / CRM (Jobber, Housecall Pro…), or we'll set one up; an email works to start</li>
-          <li>A <b>real photo of you</b> for the “About” section</li>
-          <li>Confirm you're <b>fully insured</b></li>
-          <li>Are you <b>hiring</b>? If so, where should applications go?</li>
-        </ul>
-      </div>
-      <div class="vin-next"><b>What happens next:</b> send those over and your site goes fully public — searchable on Google — <b>within the day</b>. Until then it stays private.</div>
-    </div>
-  </div>
-</div>
-<!-- ═══ end preview-only ═══ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 <script>
 (function(){
   'use strict';
-  /* ── concept preview ── */
-  var poc=document.getElementById('poc');
-  try{ if(sessionStorage.getItem('kcp-poc')) poc.classList.add('hide'); }catch(e){}
-  document.getElementById('pocBtn').addEventListener('click',function(){ poc.classList.add('hide'); try{sessionStorage.setItem('kcp-poc','1');}catch(e){} });
-
   /* ── walkthrough engine (ported from approved prototype, origins as tuned) ── */
   var walk=document.getElementById('walk'),
       scenes=[].slice.call(walk.querySelectorAll('.scene')),
@@ -862,7 +755,7 @@
 
   function walkFwd(){ calmIdle(); if(i===scenes.length-1&&!busy){ finish(); return; } step(); }  // at the gleaming foyer, one more step books
   walk.addEventListener('click',function(e){ if(e.target===bookCta||e.target===backBtn||e.target===closeBtn) return; walkFwd(); });
-  bookCta.addEventListener('click',function(){window.location.href='https://link.tidytrack.io/preview/myeqnNH7e6JdKaTMIbCe?notrack=true#section-qRbixkdLmB';});
+  bookCta.addEventListener('click',function(){window.location.href='https://booking.kentuckycleaningpros.com/';});
   addEventListener('keydown',function(e){
     if(finished) return;
     if(e.key==='Escape'){ e.preventDefault(); closeWalk(false); return; }   // never trapped — Esc leaves the walk
@@ -947,37 +840,6 @@
       try{ bookDone.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }catch(e2){}
     });
   }
-})();
-</script>
-<script>
-/* PREVIEW-ONLY: For Vincent status channel — remove at launch */
-(function(){
-  var tab=document.getElementById('vinTab'), modal=document.getElementById('vinModal'),
-      x=document.getElementById('vinClose'), unlock=document.getElementById('vinUnlock'),
-      code=document.getElementById('vinCode'), err=document.getElementById('vinErr'),
-      gate=document.getElementById('vinGate'), panel=document.getElementById('vinPanel');
-  if(!tab||!modal) return;
-  function open(){
-    modal.hidden=false;
-    var ok=false; try{ ok=localStorage.getItem('kcp-vin')==='1'; }catch(e){}
-    if(ok){ gate.hidden=true; panel.hidden=false; }
-    else { gate.hidden=false; panel.hidden=true; setTimeout(function(){ try{code.focus();}catch(e){} },60); }
-  }
-  function shut(){ modal.hidden=true; }
-  function go(){
-    if(code.value.replace(/\s/g,'')==='2027'){
-      try{ localStorage.setItem('kcp-vin','1'); }catch(e){}
-      err.textContent=''; gate.hidden=true; panel.hidden=false;
-    } else {
-      err.textContent='That code isn’t right — try again.'; code.value=''; try{code.focus();}catch(e){}
-    }
-  }
-  tab.addEventListener('click',open);
-  x.addEventListener('click',shut);
-  modal.addEventListener('click',function(e){ if(e.target===modal) shut(); });
-  unlock.addEventListener('click',go);
-  code.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); go(); } });
-  addEventListener('keydown',function(e){ if(e.key==='Escape'&&!modal.hidden) shut(); });
 })();
 </script>
 </body>
