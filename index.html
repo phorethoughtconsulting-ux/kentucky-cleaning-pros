@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Walk through a home as we bring it back to life — then book yours. Louisville, KY.">
 <meta name="twitter:image" content="https://kentuckycleaningpros.com/img/og.jpg">
 <link rel="canonical" href="https://kentuckycleaningpros.com/">
-<!-- LocalBusiness schema — TRUE fields only. AT LAUNCH (Vince's real data): add telephone, email, address(PostalAddress), geo, openingHoursSpecification, priceRange — never placeholders. Also remove the robots noindex above. -->
+<!-- LocalBusiness schema — TRUE fields only. AT LAUNCH (real business data): add telephone, email, address(PostalAddress), geo, openingHoursSpecification, priceRange — never placeholders. Also remove the robots noindex above. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -57,6 +57,34 @@
   @media (max-width:430px){ header .wm{font-size:14px} }
   header .h-right{display:flex;align-items:center;gap:18px}
   header a.tel{color:#fff;text-decoration:none;font-weight:600;font-size:14px;text-shadow:0 1px 12px rgba(0,0,0,.5);transition:color .5s}
+  /* ───────────── MOBILE HAMBURGER MENU (phones/tablets only) ───────────── */
+  header .hamburger{display:none;cursor:pointer;background:rgba(20,28,24,.35);border:1px solid rgba(255,255,255,.4);
+        width:44px;height:44px;border-radius:12px;align-items:center;justify-content:center;backdrop-filter:blur(6px);
+        padding:0;transition:border-color .25s,background .25s}
+  header .hamburger span{position:relative;width:20px;height:2px;background:#fff;border-radius:2px;transition:background .2s}
+  header .hamburger span::before,header .hamburger span::after{content:'';position:absolute;left:0;width:20px;height:2px;
+        background:#fff;border-radius:2px;transition:transform .25s,top .25s,background .2s}
+  header .hamburger span::before{top:-6px}
+  header .hamburger span::after{top:6px}
+  header.solid .hamburger{background:rgba(9,26,69,.06);border-color:rgba(9,26,69,.18)}
+  header.solid .hamburger span,header.solid .hamburger span::before,header.solid .hamburger span::after{background:var(--ink)}
+  header .hamburger:hover{border-color:var(--gold)}
+  header .hamburger:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  header .hamburger[aria-expanded="true"] span{background:transparent}
+  header .hamburger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+  header .hamburger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+  @media (max-width:760px){ header .hamburger{display:inline-flex} }
+  #mmenu{position:fixed;top:76px;right:clamp(14px,4vw,30px);z-index:65;width:min(280px,86vw);background:var(--surface);
+        border-radius:16px;box-shadow:0 20px 50px rgba(9,26,69,.22);padding:10px;display:flex;flex-direction:column;gap:2px;
+        opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .22s ease,transform .22s ease,visibility .22s}
+  #mmenu.open{opacity:1;visibility:visible;transform:translateY(0)}
+  #mmenu a{display:flex;align-items:center;min-height:46px;color:var(--ink);text-decoration:none;font-weight:600;
+        font-size:15px;padding:0 14px;border-radius:10px;transition:background .2s,color .2s}
+  #mmenu a:hover,#mmenu a:focus-visible{background:rgba(93,150,39,.1);color:var(--green)}
+  #mmenu hr{border:none;border-top:1px solid rgba(30,42,37,.12);margin:6px 4px}
+  #mmenu a.mm-book{margin-top:4px;background:var(--green);color:#fff;justify-content:center}
+  #mmenu a.mm-book:hover{background:#256648;color:#fff}
+  @media (min-width:761px){ #mmenu{display:none} }
   header button.skip{cursor:pointer;background:rgba(20,28,24,.35);border:1px solid rgba(255,255,255,.4);color:#fff;
         font-family:var(--sans);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;
         padding:12px 16px;min-height:44px;border-radius:30px;backdrop-filter:blur(6px);transition:.25s;white-space:nowrap}
@@ -326,7 +354,7 @@
 <body>
 
 <header id="hdr" class="solid">
-  <a class="wm" href="#top" aria-label="Kentucky Cleaning Pros home"><img src="img/kcp-logo.png" alt="Kentucky Cleaning Pros" style="height:clamp(38px,7vw,48px);width:auto;display:block"></a>
+  <a class="wm" href="#top" aria-label="Kentucky Cleaning Pros home"><img src="img/kcp-logo-transparent.png" alt="Kentucky Cleaning Pros" style="height:clamp(38px,7vw,48px);width:auto;display:block"></a>
   <div class="h-right">
     <nav class="hnav" aria-label="Site sections">
       <a href="#services">Services</a>
@@ -336,8 +364,18 @@
     </nav>
     <a class="tel" href="tel:+15025863153">(502) 586-3153</a>
     <a class="hbook" href="https://booking.kentuckycleaningpros.com/">Book now →</a>
+    <button class="hamburger" id="mmenuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
   </div>
 </header>
+<nav id="mmenu" aria-label="Mobile menu">
+  <a href="#services">Services</a>
+  <a href="#about">About</a>
+  <a href="#faq">FAQ</a>
+  <a href="https://booking.kentuckycleaningpros.com/">Book</a>
+  <hr>
+  <a href="tel:+15025863153">Call (502) 586-3153</a>
+  <a class="mm-book" href="https://booking.kentuckycleaningpros.com/">Book now →</a>
+</nav>
 <div id="wprog" aria-hidden="true" style="position:fixed;top:0;left:0;height:3px;width:0;background:var(--green);z-index:70;transition:width .6s ease"></div>
 
 <!-- ═══════════ THE WALKTHROUGH (optional — opens only when a visitor asks for it) ═══════════ -->
@@ -390,7 +428,7 @@
       <h2>Three steps to a spotless home.</h2>
       <div class="steps" data-reveal-group>
         <div class="step"><span class="step-n">1</span><h3>Book in 60 seconds</h3><p>Tell us about your home — online in a couple of taps. We confirm every booking ourselves.</p></div>
-        <div class="step"><span class="step-n">2</span><h3>We clean it right</h3><p>A vetted crew arrives ready and cleans room by room, to a veteran's standard.</p></div>
+        <div class="step"><span class="step-n">2</span><h3>We clean it right</h3><p>A trusted, personally selected crew arrives ready and cleans room by room, to a veteran's standard.</p></div>
         <div class="step"><span class="step-n">3</span><h3>You relax</h3><p>Come home to clean. Done means done — every surface, every time.</p></div>
       </div>
     </div>
@@ -399,7 +437,7 @@
   <section class="band" id="pricing" style="background:#EFF5F0">
     <div class="inner" style="max-width:780px;text-align:center;margin:0 auto">
       <span class="eyebrow" style="justify-content:center">Transparent pricing</span>
-      <h2>Transparent, flat-rate pricing for Louisville homeowners.</h2>
+      <h2>Transparent, upfront pricing for Louisville homeowners.</h2>
       <p class="lead" style="margin-left:auto;margin-right:auto">Honest pricing with zero hidden fees. Standard cleaning starts at just <b style="color:var(--ink)">$145</b>, and deep cleaning starts at <b style="color:var(--ink)">$225</b>. Tell us about your home for your exact quote.</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:30px auto 26px">
         <div style="background:var(--surface);border:1px solid rgba(93,150,39,.16);border-radius:14px;padding:18px 30px;min-width:180px;box-shadow:0 10px 30px rgba(30,42,37,.05)">
@@ -411,7 +449,7 @@
           <span style="display:block;font-family:var(--serif);font-weight:600;font-size:32px;color:var(--green);margin-top:4px">from $225</span>
         </div>
       </div>
-      <p style="font-size:14.5px;color:#3f4b45;line-height:1.8;margin-bottom:24px"><b style="color:var(--green)">✓</b> 100% Satisfaction Guarantee &nbsp; <b style="color:var(--green)">✓</b> Vetted &amp; fully insured &nbsp; <b style="color:var(--green)">✓</b> Eco-friendly, pet-safe products</p>
+      <p style="font-size:14.5px;color:#3f4b45;line-height:1.8;margin-bottom:24px"><b style="color:var(--green)">✓</b> 100% Satisfaction Guarantee &nbsp; <b style="color:var(--green)">✓</b> Trusted &amp; fully insured &nbsp; <b style="color:var(--green)">✓</b> Pet-safe products</p>
       <a class="btn-primary" href="quote.html">Get my instant estimate →</a>
     </div>
   </section>
@@ -471,6 +509,7 @@
       <span class="eyebrow">Good to know</span>
       <h2>Questions, answered.</h2>
       <div class="faq" data-reveal-group>
+        <details><summary>What's your satisfaction guarantee?</summary><p>If you're not happy with a cleaning we did, tell us within 24 hours and we'll come back and re-clean the missed areas free. If you're still not satisfied after that, we'll refund that service.</p></details>
         <details><summary>How do I book a cleaning?</summary><p>Pick a day on the form above or give us a call. We personally review every booking and text you back to confirm the details — no spam, no pressure.</p></details>
         <details><summary>What's the difference between Standard, Premium, Deep / VIP, and Move-out?</summary><p>Standard is the regular reset — floors, surfaces, kitchen and baths. Premium is standard elevated, with extra detail and high-touch finishes. Deep / VIP goes further — baseboards, appliances, and the corners a standard skips. Move-in / move-out is an empty-home clean, top to bottom, ready for keys or a deposit.</p></details>
         <details><summary>Are you insured?</summary><p>Yes — Kentucky Cleaning Pros is fully insured. We're veteran-owned, and every job is done to a veteran's standard of care.</p></details>
@@ -486,10 +525,9 @@
     <div class="inner">
       <span class="eyebrow">The founder</span>
       <h2>Built on a veteran's standard.</h2>
-      <div style="display:grid;grid-template-columns:130px 1fr;gap:clamp(20px,4vw,40px);align-items:start;margin-top:34px" data-reveal-group>
-        <div style="width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,#5D9627,#1E5B41);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:600;font-size:42px;color:#F7F9F7;box-shadow:0 14px 34px rgba(93,150,39,.3)" aria-hidden="true">KCP</div><!-- [PLACEHOLDER: swap for a real founder/crew photo at launch — never a stock face] -->
+      <div style="margin-top:34px" data-reveal-group>
         <div>
-          <p class="lead" style="max-width:640px;margin-top:0">Kentucky Cleaning Pros was <strong style="color:var(--ink)">founded by a Navy veteran and Louisville builder.</strong> The discipline of the service — show up, do it right, leave it better than you found it — is the whole company. Kentucky Cleaning Pros brings that standard into homes across Louisville: a vetted crew, honest pricing, and work that's done when it's actually done.</p>
+          <p class="lead" style="max-width:640px;margin-top:0">Kentucky Cleaning Pros was <strong style="color:var(--ink)">founded by a Navy veteran and Louisville builder.</strong> The discipline of the service — show up, do it right, leave it better than you found it — is the whole company. Kentucky Cleaning Pros brings that standard into homes across Louisville: a trusted crew, honest pricing, and work that's done when it's actually done.</p>
           <p class="lead" style="max-width:640px;margin-top:12px;font-style:italic">"Clean spaces, better places" isn't a slogan — it's what we leave behind in every room.</p>
         </div>
       </div>
@@ -808,6 +846,17 @@
   if(wm) wm.addEventListener('click',function(e){ if(!finished&&document.body.classList.contains('walking')){ e.preventDefault(); closeWalk(false); } });   // logo closes the walk if it's open; otherwise the anchor jumps home
   // (reduced-motion shows the static poster by design — no drift, per prefers-reduced-motion)
 
+  /* ── mobile hamburger menu: dropdown mirrors the desktop nav + Call + Book ── */
+  var mmenuBtn=document.getElementById('mmenuBtn'), mmenu=document.getElementById('mmenu');
+  function closeMenu(){ if(!mmenuBtn) return; mmenuBtn.setAttribute('aria-expanded','false'); mmenu.classList.remove('open'); }
+  function toggleMenu(){ var open=mmenuBtn.getAttribute('aria-expanded')==='true'; mmenuBtn.setAttribute('aria-expanded',open?'false':'true'); mmenu.classList.toggle('open',!open); }
+  if(mmenuBtn&&mmenu){
+    mmenuBtn.addEventListener('click',function(e){ e.stopPropagation(); toggleMenu(); });
+    mmenu.addEventListener('click',function(e){ if(e.target.tagName==='A') closeMenu(); });
+    document.addEventListener('click',function(e){ if(mmenu.classList.contains('open')&&!mmenu.contains(e.target)&&e.target!==mmenuBtn) closeMenu(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu(); });
+  }
+
   /* ── booking-page reveals (motion-kit pattern, guarded) ── */
   if(hasGsap && window.ScrollTrigger && !reduce){
     gsap.registerPlugin(ScrollTrigger);
@@ -815,29 +864,6 @@
       var kids=gsap.utils.toArray(group.children);
       gsap.set(kids,{opacity:0,y:30});
       ScrollTrigger.batch(kids,{start:'top 88%',once:true,onEnter:function(b){gsap.to(b,{opacity:1,y:0,duration:.9,ease:'power2.out',stagger:.1});}});
-    });
-  }
-
-  /* ── booking: pick a slot → branded on-page confirmation ──
-     PREVIEW: no live endpoint yet. Native `required` gates the fields, then this shows the
-     confirmation. When Vincent's booking destination / CRM is chosen, POST there (fetch) before
-     revealing #bookDone — everything else already works. */
-  var bookForm=document.getElementById('bookForm'), bookDone=document.getElementById('bookDone');
-  if(bookForm&&bookDone){
-    var fday=document.getElementById('f-day');   // no booking a day in the past
-    if(fday){ var td=new Date(); fday.min=td.getFullYear()+'-'+('0'+(td.getMonth()+1)).slice(-2)+'-'+('0'+td.getDate()).slice(-2); }
-    var WD=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    var MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    bookForm.addEventListener('submit',function(e){
-      e.preventDefault();
-      var dayV=(document.getElementById('f-day')||{}).value||'';
-      var timeV=(document.getElementById('f-time')||{}).value||'';
-      var whenTxt=timeV;
-      if(dayV){ var p=dayV.split('-'); var d=new Date(+p[0],+p[1]-1,+p[2]);
-        if(!isNaN(d)) whenTxt=WD[d.getDay()]+', '+MO[d.getMonth()]+' '+(+p[2])+'  ·  '+timeV; }
-      var w=document.getElementById('bdWhen'); if(w) w.textContent=whenTxt;
-      bookForm.hidden=true; bookDone.hidden=false;
-      try{ bookDone.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }catch(e2){}
     });
   }
 })();
